@@ -1,34 +1,26 @@
-<h1>New Todo</h1>
-<form>
-  <div class="form-group">
-    <label>Task Description</label>
-    <input type="text" class="form-control" placeholder="task" ng-model="newTask.task">
+<h1>Todo List</h1>
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <div class="input-group">
+      <span class="input-group-btn">
+      <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button></span>
+      <input type="text" class="form-control" placeholder="Search for..." ng-model="searchText">
+    </div>
   </div>
+</div>
 
-  <div class="form-group">
-    <label>Due Date</label>
-    <input type="text" class="form-control" placeholder="MM/DD/YYYY" ng-model="newTask.dueDate">
+<div ng-repeat="element in items | filter:searchText">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="col-xs-1"><input type="checkbox" name=""/></div>
+      <div class="col-xs-6"><b>{{element.task}}</b></div>
+      <p class="col-xs-1">{{element.dueDate}}</p>
+      <p class="col-xs-1">{{element.assignTo}}</p>
+      <p class="col-xs-1">{{element.location}}</p>
+      <p class="col-xs-1">{{element.urgency}}</p>
+      <div><button class="btn btn-danger">X</button></div>
+    </div>
   </div>
+</div>
 
-  <div class="form-group">
-    <label>Assign To</label>
-    <input type="text" class="form-control" placeholder="name" ng-model="newTask.assignTo">
-  </div>
 
-  <div class="form-group">
-    <label>Location</label>
-    <input type="text" class="form-control" placeholder="location" ng-model="newTask.location">
-  </div>
-
-  <div class="form-group">
-    <label>Urgency</label>
-    <input type="text" class="form-control" placeholder="urgency" ng-model="newTask.urgency">
-  </div>
-
-  <div class="form-group">
-    <label>Dependencies</label>
-    <input type="text" class="form-control" placeholder="dependencies" ng-model="newTask.dependencies">
-  </div>
-
-  <button class="btn btn-default" ng-click="addNewItem()">Submit</button>
-</form>

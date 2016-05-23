@@ -15,4 +15,4 @@ app.config(function($routeProvider){
       controller:"itemViewCtrl"
     }).
     otherwise("/items/list");
-})
+});
