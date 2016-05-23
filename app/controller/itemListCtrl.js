@@ -1,7 +1,4 @@
-app.controller("TodoCtrl", function($scope){
-  $scope.welcome="Hello";
-  $scope.showListView=true;
-  $scope.newTask={};
+app.controller("itemListCtrl", function($scope){
 
   $scope.items=[{
     id:0,
@@ -43,21 +40,7 @@ app.controller("TodoCtrl", function($scope){
     urgency:"low",
     dependencies:["sunshine", "clippers", "hat","water","headphones"]
   }]
-
-  $scope.newItem=function(){
-    $scope.showListView=false;
-    
-  };
-
-  $scope.allItems=function(){
-    $scope.showListView=true;
-  };
-  $scope.addNewItem=function(){
-    $scope.newTask.isCompleted=false;
-    $scope.newTask.id=$scope.items.length;
-    $scope.items.push($scope.newTask);
-    console.log($scope.items);
-    $scope.newTask="";
-  };
-
 });
+
+
+

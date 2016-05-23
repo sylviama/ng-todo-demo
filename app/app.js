@@ -4,15 +4,15 @@ app.config(function($routeProvider){
   $routeProvider.
     when("/items/list",{
       templateUrl:"partials/item-list.html",
-      controller:"TodoCtrl"
+      controller:"itemListCtrl"
     }).
     when("/items/new",{
       templateUrl:"partials/item-new.html",
-      controller:"TodoCtrl"
+      controller:"itemNewCtrl"
     }).
     when("/items/details",{
       templateUrl:"partials/item-details.html",
-      controller:"TodoCtrl"
+      controller:"itemViewCtrl"
     }).
     otherwise("/items/list");
 })

@@ -23,19 +23,18 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         
         <li><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
         
         </li>
-      </ul>
+      </ul> -->
       
-      <ul class="nav navbar-nav navbar-right" ng-repeat="element in navItems">
-        <li><a href="#">{{element.name}}</a></li>
-        
-        </li>
+      <ul class="nav navbar-nav navbar-right" ng-repeat="elementName in navItems">
+        <li><a ng-href="{{elementName.url}}">{{elementName.Url}}{{elementName.name}}</a></li>
+      
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -65,5 +64,8 @@
   <script src="app/app.js"></script>
   <script src="app/controller/navCtrl.js"></script>
   <script src="app/controller/todoCtrl.js"></script>
+  <script src="app/controller/itemListCtrl.js"></script>
+  <script src="app/controller/itemNewCtrl.js"></script>
+  <script src="app/controller/itemViewCtrl.js"></script>
 </body>
 </html>
