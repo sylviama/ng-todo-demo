@@ -1,0 +1,27 @@
+<h1>Todo List</h1>
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <div class="input-group">
+      <span class="input-group-btn">
+      <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button></span>
+      <input type="text" class="form-control" placeholder="Search for..." ng-model="searchText">
+    </div>
+  </div>
+</div>
+
+<div ng-repeat="element in items | filter:searchText">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="col-xs-1"><input type="checkbox" name=""/></div>
+      <div class="col-xs-6"><b>{{element.task}}</b></div>
+      <p class="col-xs-1">{{element.dueDate}}</p>
+      <p class="col-xs-1">{{element.assignTo}}</p>
+      <p class="col-xs-1">{{element.location}}</p>
+      <p class="col-xs-1">{{element.urgency}}</p>
+      <!-- capture the id with the delete function -->
+      <div><button class="btn" ng-click="deleteItem(element.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+    </div>
+  </div>
+</div>
+
+
