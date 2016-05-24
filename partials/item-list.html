@@ -13,7 +13,8 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="col-xs-1"><input type="checkbox" name=""/></div>
-      <div class="col-xs-6"><b>{{element.task}}</b></div>
+      <!-- click and link to its detail page with its id -->
+      <div class="col-xs-6"><a ng-href="#/items/{{element.id}}"><b>{{element.task}}</b></a></div>
       <p class="col-xs-1">{{element.dueDate}}</p>
       <p class="col-xs-1">{{element.assignTo}}</p>
       <p class="col-xs-1">{{element.location}}</p>

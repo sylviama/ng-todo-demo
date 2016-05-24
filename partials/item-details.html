@@ -1,1 +1,10 @@
-<h1>Item Details</h1>
+<h1>{{selectedItem.task}}</h1>
+<h4>Assign to: {{selectedItem.assignTo}}</h4>
+<h4>Location: {{selectedItem.location}}</h4>
+<h4>Location: {{selectedItem.location}}</h4>
+<h4>Complete? {{selectedItem.isCompleted}}</h4>
+<h4>Dependencies: {{selectedItem.dependencies}}</h4>
+<h4>Due Date: {{selectedItem.dueDate}}</h4>
+<h4>Urgency Level: {{selectedItem.urgency}}</h4>
+
+<button class="btn btn-info" ng-click="backToList()">Back to List</button>

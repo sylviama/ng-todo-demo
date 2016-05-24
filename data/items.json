@@ -6,7 +6,7 @@
         "assignTo": "Greg",
         "location": "Zoe's house",
         "urgency": "low",
-        "dependencies": ["sunshine", "clippers", "hat", "water", "headphones"]
+        "dependencies": "sunshine, clippers, hat, water, headphones"
     },
     "task2": {
         "task": "Cry",
@@ -15,7 +15,7 @@
         "assignTo": "Joe",
         "location": "Zoe's house",
         "urgency": "low",
-        "dependencies": ["Wifi", "clippers", "hat", "water", "headphones"]
+        "dependencies": "Wifi, clippers, hat, water, headphones"
     },
     "task3": {
         "task": "take a nap",
@@ -24,7 +24,7 @@
         "assignTo": "Zoe",
         "location": "Zoe's house",
         "urgency": "low",
-        "dependencies": ["pillow", "blanket", "bed", "water", "headphones"]
+        "dependencies": "pillow, blanket, bed, water, headphones"
     },
     "task4": {
         "task": "grade quizz",
@@ -33,6 +33,6 @@
         "assignTo": "Greg",
         "location": "Zoe's house",
         "urgency": "low",
-        "dependencies": ["sunshine", "clippers", "hat", "water", "headphones"]
+        "dependencies": "sunshine, clippers, hat, water, headphones"
     }
 }
