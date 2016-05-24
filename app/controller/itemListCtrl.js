@@ -1,45 +1,32 @@
-app.controller("itemListCtrl", function($scope){
+app.controller("itemListCtrl", function($scope, $http,$location){
 
-  $scope.items=[{
-    id:0,
-    task:"mow the lawn zoe",
-    isCompleted:true,
-    dueDate:"12/5/17",
-    assignTo:"Greg",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["sunshine", "clippers", "hat","water","headphones"]
-  },
-  {
-    id:1,
-    task:"Cry",
-    isCompleted:false,
-    dueDate:"12/5/16",
-    assignTo:"Joe",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["Wifi", "clippers", "hat","water","headphones"]
-  },
-  {
-    id:2,
-    task:"take a nap",
-    isCompleted:true,
-    dueDate:"12/5/17",
-    assignTo:"Zoe",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["pillow", "blanket", "bed","water","headphones"]
-  },
-  {
-    id:3,
-    task:"grade quizz",
-    isCompleted:true,
-    dueDate:"12/5/17",
-    assignTo:"Greg",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["sunshine", "clippers", "hat","water","headphones"]
-  }]
+  $scope.items= [];
+
+  //get
+  $scope.getData=function(){
+    $http.get("https://ngtododemo.firebaseio.com/.json")
+      .success(function(itemObject){
+        Object.keys(itemObject).forEach(function(key){
+            itemObject[key].id=key;
+            $scope.items.push(itemObject[key]);
+        });
+      });
+    };
+
+    //call get the data
+    $scope.getData();
+
+//delete
+  $scope.deleteItem=function(item_id){
+    $http.delete("https://ngtododemo.firebaseio.com/"+item_id+".json")
+    .success(function(){
+        //clear everything, then reload
+        $scope.items=[];
+        //recall the data(reload) to refresh
+        $scope.getData();
+    })
+  }
+
 });
 
 

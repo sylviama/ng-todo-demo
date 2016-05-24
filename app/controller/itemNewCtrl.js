@@ -1,51 +1,47 @@
-app.controller("itemNewCtrl", function($scope){
-  $scope.newTask={};
-  $scope.items=[{
-    id:0,
-    task:"mow the lawn zoe",
-    isCompleted:true,
-    dueDate:"12/5/17",
-    assignTo:"Greg",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["sunshine", "clippers", "hat","water","headphones"]
-  },
-  {
-    id:1,
-    task:"Cry",
+app.controller("itemNewCtrl", function($scope,$http,$location){
+  //set up the initial, so that every field has a value even user missed one
+  $scope.newTask={
+    assignedTo:"",
+    dependencies: "",
+    dueDate:"",
     isCompleted:false,
-    dueDate:"12/5/16",
-    assignTo:"Joe",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["Wifi", "clippers", "hat","water","headphones"]
-  },
-  {
-    id:2,
-    task:"take a nap",
-    isCompleted:true,
-    dueDate:"12/5/17",
-    assignTo:"Zoe",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["pillow", "blanket", "bed","water","headphones"]
-  },
-  {
-    id:3,
-    task:"grade quizz",
-    isCompleted:true,
-    dueDate:"12/5/17",
-    assignTo:"Greg",
-    location:"Zoe's house",
-    urgency:"low",
-    dependencies:["sunshine", "clippers", "hat","water","headphones"]
-  }];
-
+    location:"",
+    task:"",
+    urgency:""
+  };
+  
+  //post to firebase
   $scope.addNewItem=function(){
-    $scope.newTask.isCompleted=false;
-    $scope.newTask.id=$scope.items.length;
-    $scope.items.push($scope.newTask);
-    console.log($scope.items);
-    $scope.newTask="";
+
+    $http.post("https://ngtododemo.firebaseio.com/.json",
+      JSON.stringify({
+        assignedTo:$scope.newTask.assignedTo,
+        dependencies:$scope.newTask.dependencies,
+        dueDate:$scope.newTask.dueDate,
+        isCompleted:$scope.newTask.isCompleted,
+        location:$scope.newTask.location,
+        task:$scope.newTask.task,
+        urgency:$scope.newTask.urgency
+      })
+    )
+    .success(function(response){
+      //response capture the key
+      // console.log(response);
+
+      //change the page to list
+      $location.url("/items/list");
+
+      //clear the field, actually if you change the page, it clears itself...
+      $scope.newTask={
+        assignedTo:"",
+        dependencies: "",
+        dueDate:"",
+        isCompleted:false,
+        location:"",
+        task:"",
+        urgency:""
+      };
+    });
+
   };
 });

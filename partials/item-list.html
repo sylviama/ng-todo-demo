@@ -18,7 +18,8 @@
       <p class="col-xs-1">{{element.assignTo}}</p>
       <p class="col-xs-1">{{element.location}}</p>
       <p class="col-xs-1">{{element.urgency}}</p>
-      <div><button class="btn btn-danger">X</button></div>
+      <!-- capture the id with the delete function -->
+      <div><button class="btn" ng-click="deleteItem(element.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
     </div>
   </div>
 </div>
