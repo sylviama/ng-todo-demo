@@ -34,7 +34,31 @@ app.factory("itemStorage", function($q, $http){
     
   }
   
+  //post
+  var postNewItem=function(newItem){
+    return $q(function(resolve,reject){
+      $http.post(
+        "https://ngtododemo.firebaseio.com/.json",
+        JSON.stringify({
+          assignedTo:newTask.assignedTo,
+          dueDate:newTask.dueDate,
+          location:newTask.location,
+          urgency:newTask.urgency,
+          task:newTask.task,
+          isCompleted:newTask.isCompleted,
+          dependencies:newTask.dependencies
+        })
+
+        ).success(
+          function(objectFromFirebase){
+            resolve(objectFromFirebase);
+          })//close success
+    })//close return
+  };//close function
+
+
 
   return {getItemList:getItemList, deleteItem:deleteItem}
 
 })
+
