@@ -1,4 +1,5 @@
-var app= angular.module("TodoApp",["ngRoute"]);
+var app= angular.module("TodoApp",["ngRoute"])
+.constant("firebaseURL","https://ngtododemo.firebaseio.com/");
 
 app.config(function($routeProvider){
   $routeProvider.
@@ -14,6 +15,10 @@ app.config(function($routeProvider){
     when("/items/:itemId",{
       templateUrl:"partials/item-details.html",
       controller:"itemViewCtrl"
+    }).
+    when('/items/:itemId/edit',{
+      templateUrl:'partials/item-new.html',
+      controller:"itemEditCtrl"
     }).
     otherwise("/items/list");
 });

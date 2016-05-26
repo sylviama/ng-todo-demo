@@ -1,7 +1,9 @@
 <h1>Todo List</h1>
+
+<!-- search box -->
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3">
-    <div class="input-group">
+    <div class="input-group search-bar-spacing">
       <span class="input-group-btn">
       <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button></span>
       <input type="text" class="form-control" placeholder="Search for..." ng-model="searchText">
@@ -9,18 +11,34 @@
   </div>
 </div>
 
+<!-- Header -->
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-5">Task</div>
+    <p class="col-xs-1">Due Date</p>
+    <p class="col-xs-1">Assign To</p>
+    <p class="col-xs-1">Location</p>
+    <p class="col-xs-1">Urgency</p>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-1"></div>
+  </div>
+</div>
+
+<!-- content -->
 <div ng-repeat="element in items | filter:searchText">
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="col-xs-1"><input type="checkbox" name=""/></div>
       <!-- click and link to its detail page with its id -->
-      <div class="col-xs-6"><a ng-href="#/items/{{element.id}}"><b>{{element.task}}</b></a></div>
+      <div class="col-xs-5"><a ng-href="#/items/{{element.id}}"><b>{{element.task}}</b></a></div>
       <p class="col-xs-1">{{element.dueDate}}</p>
       <p class="col-xs-1">{{element.assignTo}}</p>
       <p class="col-xs-1">{{element.location}}</p>
       <p class="col-xs-1">{{element.urgency}}</p>
       <!-- capture the id with the delete function -->
-      <div><button class="btn" ng-click="deleteItem(element.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+      <div class="col-xs-1"><button class="btn btn-info" ng-click="editItem(element.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></div>
+      <div class="col-xs-1"><button class="btn" ng-click="deleteItem(element.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
     </div>
   </div>
 </div>

@@ -8,29 +8,9 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body ng-app="TodoApp">
+<div ng-include="'./partials/nav-bar.html'"></div>
 
-  <nav class="navbar navbar-default" ng-controller="NavCtrl">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Todo App</a>
-    </div>
-
-      
-      <ul class="nav navbar-nav navbar-right" ng-repeat="elementName in navItems">
-        <li><a ng-href="{{elementName.url}}">{{elementName.name}}</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
+  
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1 main-container">
     <div class="col-xs-12" ng-view></div>
@@ -45,6 +25,7 @@
   <script src="app/app.js"></script>
   <script src="app/factories/itemfactory.js"></script>
   <script src="app/controller/navCtrl.js"></script>
+  <script src="app/controller/itemEditCtrl.js"></script>
   <script src="app/controller/itemListCtrl.js"></script>
   <script src="app/controller/itemNewCtrl.js"></script>
   <script src="app/controller/itemViewCtrl.js"></script>

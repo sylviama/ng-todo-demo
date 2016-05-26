@@ -7,4 +7,5 @@
 <h4>Due Date: {{selectedItem.dueDate}}</h4>
 <h4>Urgency Level: {{selectedItem.urgency}}</h4>
 
-<button class="btn btn-info" ng-click="backToList()">Back to List</button>
+<button class="btn btn-default" ng-click="backToList()">Back to List</button>
+<button class="btn btn-info"><a ng-href="#/items/{{selectedItem.id}}/edit">Edit</a></button>

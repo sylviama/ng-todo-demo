@@ -1,11 +1,11 @@
-app.factory("itemStorage", function($q, $http){
+app.factory("itemStorage", function($q, $http,firebaseURL){
 
 
   var getItemList=function(){
     var items=[];
     
     return $q(function(resolve,reject){
-      $http.get("https://ngtododemo.firebaseio.com/.json")
+      $http.get(firebaseURL+".json")
           .success(function(itemObject){
             //change the format of the json object
             Object.keys(itemObject).forEach(function(key){
@@ -22,7 +22,7 @@ app.factory("itemStorage", function($q, $http){
 
   var deleteItem=function(itemId){
     return $q(function(resolve,reject){
-      $http.delete("https://ngtododemo.firebaseio.com/"+itemId+".json")
+      $http.delete(firebaseURL+itemId+".json")
     .success(function(objectFromFirebase){
         resolve(objectFromFirebase);
         //!!!!!!!clear everything, then reload
@@ -35,10 +35,11 @@ app.factory("itemStorage", function($q, $http){
   }
   
   //post
-  var postNewItem=function(newItem){
+  var postNewItem=function(newTask){
+
     return $q(function(resolve,reject){
       $http.post(
-        "https://ngtododemo.firebaseio.com/.json",
+        firebaseURL+".json",
         JSON.stringify({
           assignedTo:newTask.assignedTo,
           dueDate:newTask.dueDate,
@@ -57,8 +58,31 @@ app.factory("itemStorage", function($q, $http){
   };//close function
 
 
+  //edit/put
+  var putItem=function(itemId,newTask){
 
-  return {getItemList:getItemList, deleteItem:deleteItem}
+    return $q(function(resolve,reject){
+      $http.put(
+        firebaseURL+itemId+".json",
+        JSON.stringify({
+          assignedTo:newTask.assignedTo,
+          dueDate:newTask.dueDate,
+          location:newTask.location,
+          urgency:newTask.urgency,
+          task:newTask.task,
+          isCompleted:newTask.isCompleted,
+          dependencies:newTask.dependencies
+        })
+        ).success(
+        function(objectFromFirebase){
+          resolve(objectFromFirebase);
+        })
+    })
+  }
+
+
+
+  return {getItemList:getItemList, deleteItem:deleteItem, postNewItem:postNewItem}
 
 })
 
