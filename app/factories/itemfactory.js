@@ -80,9 +80,48 @@ app.factory("itemStorage", function($q, $http,firebaseURL){
     })
   }
 
+  //get Single Item first
+  var getSingleItem=function(itemId){
+    
+    return $q(function(resolve,reject){
+      $http.get(firebaseURL+itemId+".json")
+          .success(function(itemObject){
+            //change the format of the json object
+            resolve(itemObject);
+            })//close success
+            .error(function(error){
+            reject(error);
+          });//close error
+    })//close return
+  }
+
+   var updateCompletedStatus=function(newTask){
+
+    return $q(function(resolve,reject){
+      $http.put(
+        firebaseURL+newTask.id+".json",
+        JSON.stringify({
+          assignedTo:newTask.assignedTo,
+          dueDate:newTask.dueDate,
+          location:newTask.location,
+          urgency:newTask.urgency,
+          task:newTask.task,
+          isCompleted:newTask.isCompleted,
+          dependencies:newTask.dependencies
+        })
+        ).success(
+        function(objectFromFirebase){
+          resolve(objectFromFirebase);
+        })
+    })
+  }
 
 
-  return {getItemList:getItemList, deleteItem:deleteItem, postNewItem:postNewItem}
+
+
+
+  return {getItemList:getItemList, deleteItem:deleteItem, postNewItem:postNewItem, getSingleItem:getSingleItem, putItem:putItem,
+    updateCompletedStatus:updateCompletedStatus}
 
 })
 

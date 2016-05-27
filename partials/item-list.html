@@ -11,7 +11,8 @@
   </div>
 </div>
 
-<!-- Header -->
+<!-- In Progress -->
+<h3>In Progress</h3>
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="col-xs-1"></div>
@@ -27,9 +28,9 @@
 
 <!-- content -->
 <div ng-repeat="element in items | filter:searchText">
-  <div class="panel panel-default">
+  <div class="panel panel-default" ng-hide="element.isCompleted"> <!-- in progress -->
     <div class="panel-body">
-      <div class="col-xs-1"><input type="checkbox" name=""/></div>
+      <div class="col-xs-1"><input type="checkbox" ng-model="element.isCompleted" ng-change="inputChange(element)" name=""/></div>
       <!-- click and link to its detail page with its id -->
       <div class="col-xs-5"><a ng-href="#/items/{{element.id}}"><b>{{element.task}}</b></a></div>
       <p class="col-xs-1">{{element.dueDate}}</p>
@@ -39,6 +40,39 @@
       <!-- capture the id with the delete function -->
       <div class="col-xs-1"><button class="btn btn-info" ng-click="editItem(element.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></div>
       <div class="col-xs-1"><button class="btn" ng-click="deleteItem(element.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Completed -->
+<h3>Completed</h3>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-5">Task</div>
+    <p class="col-xs-1">Due Date</p>
+    <p class="col-xs-1">Assign To</p>
+    <p class="col-xs-1">Location</p>
+    <p class="col-xs-1">Urgency</p>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-1"></div>
+  </div>
+</div>
+
+<!-- content -->
+<div ng-repeat="element in items | filter:{isCompleted: true}"><!-- completed is filtered here -->
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="col-xs-1"><input type="checkbox" ng-model="element.isCompleted" ng-change="inputChange(element)" name=""/></div>
+      <!-- click and link to its detail page with its id -->
+      <div class="col-xs-5"><a ng-href="#/items/{{element.id}}"><b>{{element.task}}</b></a></div>
+      <p class="col-xs-1">{{element.dueDate}}</p>
+      <p class="col-xs-1">{{element.assignTo}}</p>
+      <p class="col-xs-1">{{element.location}}</p>
+      <p class="col-xs-1">{{element.urgency}}</p>
+      <!-- capture the id with the delete function -->
+      <div class="col-xs-1"><button class="btn btn-info" ng-click="editItem(element.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></div>
     </div>
   </div>
 </div>

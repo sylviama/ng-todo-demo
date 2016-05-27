@@ -1,20 +1,23 @@
-app.controller("itemEditCtrl", function($scope,$http,$location,itemStorage){
-  //set up the initial, so that every field has a value even user missed one
+app.controller("itemEditCtrl", function($scope,$location,$routeParams, itemStorage){
+  //($routeParams is the way to access the url)
+
   $scope.newTask={};
+  $scope.title="Edit Item";
+  $scope.button_name= "Update";
+
+  //get single item first
+  itemStorage.getSingleItem($routeParams.itemId).then(function(response){
+    $scope.newTask=response;
+  })
+
   
-  //post
-  // $scope.addNewItem=function(){
-  //   itemStorage.postNewItem($scope.newTask).then(function(){
-  //     $location.url("/items/list");
-  //   })
-  // }
-
-  $scope.editItem=function(itemId){
-
-    itemStorage.putItem(itemId,$scope.newTask).then(function(){
-
+  //update,this has the same name as the function in itemNewCtrl, but it's actually edit function
+  $scope.addNewItem=function(){
+    itemStorage.putItem($routeParams.itemId, $scope.newTask).then(function(){
+      $location.url("/items/list");
     })
   }
+
   
 
 });

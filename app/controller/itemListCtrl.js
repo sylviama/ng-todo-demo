@@ -19,7 +19,7 @@ app.controller("itemListCtrl", function($scope, $http,$location, itemStorage){
 
   //call from factory
   itemStorage.getItemList().then(function(itemObject){
-    console.log("itemObject from promise", itemObject);
+
     $scope.items=itemObject;
   })
 
@@ -40,7 +40,12 @@ app.controller("itemListCtrl", function($scope, $http,$location, itemStorage){
   //   })
   // }
 
-
+//for the checkbox
+$scope.inputChange=function(item){
+  itemStorage.updateCompletedStatus(item).then(function(response){
+    
+  })
+}
 
 
 });
