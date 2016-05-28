@@ -1,4 +1,4 @@
-app.factory("itemStorage", function($q, $http,firebaseURL){
+app.factory("itemStorage", function($q, $http,firebaseURL,authFactory){
 
 
   var getItemList=function(){
@@ -36,6 +36,8 @@ app.factory("itemStorage", function($q, $http,firebaseURL){
   
   //post
   var postNewItem=function(newTask){
+    var user=authFactory.getUser();
+    console.log(user);
 
     return $q(function(resolve,reject){
       $http.post(
@@ -47,7 +49,8 @@ app.factory("itemStorage", function($q, $http,firebaseURL){
           urgency:newTask.urgency,
           task:newTask.task,
           isCompleted:newTask.isCompleted,
-          dependencies:newTask.dependencies
+          dependencies:newTask.dependencies,
+          uid:user.uid
         })
 
         ).success(
