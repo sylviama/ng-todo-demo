@@ -3,6 +3,10 @@
 app.controller("loginCtrl",function($scope, firebaseURL, authFactory, $location){
   let ref=new Firebase(firebaseURL);
   
+  $scope.hasUser=false;
+
+
+
   $scope.account={
     email:"",
     password:""
@@ -34,12 +38,13 @@ app.controller("loginCtrl",function($scope, firebaseURL, authFactory, $location)
     console.log("You clicked login");
     authFactory.authenticate($scope.account)
     .then(()=>{
+      $scope.hasUser=true;
       $location.path("/items/list");
       $scope.$apply();//firebase, make it work...
     })
   };
 
-  
-
 
 })
+
+

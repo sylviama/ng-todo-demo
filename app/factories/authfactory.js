@@ -31,12 +31,5 @@ app.factory("authFactory", function(firebaseURL){
       });
     }
 
-
-
-
-
-
-
-
-  };
+  };//close return
 });
